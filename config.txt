@@ -1,0 +1,16 @@
+Host bastion
+	Hostname  {점프 서버의 퍼블릭 IP}
+	User ec2-user
+	IdentityFile {각자 .pem 키 파일의 절대 경로를 입력하시면 됩니다}
+
+Host web01
+	Hostname {ec2-web01의 프라이빗 IP}
+	User ec2-user
+	IdentityFile {각자 .pem 키 파일의 절대 경로를 입력하시면 됩니다}
+	ProxyCommand ssh.exe bastion -W %h:%p
+
+Host web02
+	Hostname {ec2-web02의 프라이빗 IP}
+	User ec2-user
+	IdentityFile {각자 .pem 키 파일의 절대 경로를 입력하시면 됩니다}
+	ProxyCommand ssh.exe bastion -W %h:%p
